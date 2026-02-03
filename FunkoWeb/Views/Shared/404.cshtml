@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Página No Encontrada";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+        <div class="col-lg-8 text-center">
+            <div class="error-container" style="animation: fadeIn 0.5s ease-in;">
+                <h1 class="display-1 fw-bold mb-4" style="
+                    font-size: 8rem;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+                "> 404 </h1>
+
+                <div class="mb-4">
+                    <span style="font-size: 4rem;">🔍</span>
+                </div>
+                
+                <h2 class="mb-3" style="font-weight: 600; color: #333;">
+                    ¡Ups! El Funko que buscas se ha escapado
+                </h2>
+                
+                <p class="lead text-muted mb-4" style="max-width: 600px; margin: 0 auto;">
+                    La página o el recurso que intentas acceder no existe o ha sido movido.
+                </p>
+
+                <div class="alert alert-light border shadow-sm mb-4" style="max-width: 500px; margin: 0 auto; border-radius: 15px;">
+                    <p class="mb-2">
+                        <i class="bi bi-info-circle"></i> <strong>¿Qué puedes hacer?</strong>
+                    </p>
+                    <ul class="list-unstyled mb-0 text-start" style="font-size: 0.9rem;">
+                        <li class="mb-2">✓ Verifica que la URL esté escrita correctamente</li>
+                        <li class="mb-2">✓ Vuelve al inicio para explorar los Funkos disponibles</li>
+                    </ul>
+                </div>
+
+                <div class="d-flex gap-3 justify-content-center mt-4">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary px-5 py-3" style="
+                        border-radius: 12px;
+                        font-weight: 600;
+                        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        border: none;
+                        transition: transform 0.2s, box-shadow 0.2s;">
+                        <i class="bi bi-house-door"></i> Ver Todos los Funkos
+                    </a>
+                    
+                    <button onclick="window.history.back()" class="btn btn-outline-secondary px-5 py-3" style="
+                        border-radius: 12px;
+                        font-weight: 600;
+                        transition: all 0.2s;
+                    ">
+                        <i class="bi bi-arrow-left"></i> Volver Atrás
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

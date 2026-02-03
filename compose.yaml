@@ -1,0 +1,7 @@
+﻿services:
+  funkoweb:
+    image: funkoweb
+    build:
+      context: .
+      dockerfile: FunkoWeb/Dockerfile
+
