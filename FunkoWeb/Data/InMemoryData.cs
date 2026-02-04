@@ -17,14 +17,10 @@ public static class InMemoryData
         Roles.Clear();
         Usuarios.Clear();
 
-        // Seed Roles
         var adminRole = new Rol { Id = 1, Nombre = "Admin" };
         var userRole = new Rol { Id = 2, Nombre = "User" };
         Roles.AddRange(new[] { adminRole, userRole });
 
-        // Seed Users with BCrypt hashed passwords
-        // Password for admin: admin123
-        // Password for user: user123
         Usuarios.Add(new Usuario
         {
             Id = 1,
@@ -42,26 +38,26 @@ public static class InMemoryData
         });
 
         var disney = new Category { Name = "Disney" };
-        var dreamwork = new Category { Name = "Dreamwork" };
         var marvel = new Category { Name = "Marvel" };
-        var anime = new Category { Name = "Anime" };
         var serie = new Category { Name = "Serie" };
+        var anime = new Category { Name = "Anime" };
+        var dreamwork = new Category { Name = "Dreamwork" };
 
-        Categories.AddRange(new[] { disney, dreamwork, marvel, anime,  serie });
-
-        Funkos.Add(new Funko 
-        { 
-            Name = "Yoda", 
-            Price = 35.99, 
-            Stock = 10, 
+        Categories.AddRange(new[] { disney, marvel, anime, dreamwork });
+        
+        Funkos.Add(new Funko
+        {
+            Name = "Yoda",
+            Price = 15.99,
+            Stock = 5,
             Category = disney,
             Image = "/images/Funko-Yoda.jpg"
         });
-
+        
         Funkos.Add(new Funko
         {
             Name = "Demogorgon",
-            Price = 35.99,
+            Price = 15.99,
             Stock = 10,
             Category = serie,
             Image = "/images/Funko-Demogorgon.jpg"
