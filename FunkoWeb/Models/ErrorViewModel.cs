@@ -1,4 +1,4 @@
-namespace FunkoWeb.Models;
+﻿namespace FunkoWeb.Models;
 
 public class ErrorViewModel
 {

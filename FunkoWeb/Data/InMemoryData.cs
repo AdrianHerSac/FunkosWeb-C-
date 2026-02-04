@@ -13,11 +13,30 @@ public static class InMemoryData
         Funkos.Clear();
 
         var disney = new Category { Name = "Disney" };
+        var dreamwork = new Category { Name = "Dreamwork" };
         var marvel = new Category { Name = "Marvel" };
-        var DragonBall = new Category { Name = "Anime" };
         var anime = new Category { Name = "Anime" };
+        var serie = new Category { Name = "Serie" };
 
-        Categories.AddRange(new[] { disney, marvel, anime });
+        Categories.AddRange(new[] { disney, dreamwork, marvel, anime,  serie });
+
+        Funkos.Add(new Funko 
+        { 
+            Name = "Yoda", 
+            Price = 35.99, 
+            Stock = 10, 
+            Category = disney,
+            Image = "/images/Funko-Yoda.jpg"
+        });
+
+        Funkos.Add(new Funko
+        {
+            Name = "Demogorgon",
+            Price = 35.99,
+            Stock = 10,
+            Category = serie,
+            Image = "/images/Funko-Demogorgon.jpg"
+        });
 
         Funkos.Add(new Funko 
         { 
@@ -25,7 +44,7 @@ public static class InMemoryData
             Price = 15.99, 
             Stock = 10, 
             Category = disney,
-            Image = "https://m.media-amazon.com/images/I/51I7M8F6Z9L.jpg"
+            Image = "/images/Funko-Stitch.jpg"
         });
 
         Funkos.Add(new Funko 
@@ -34,25 +53,25 @@ public static class InMemoryData
             Price = 18.50, 
             Stock = 5, 
             Category = marvel,
-            Image = "https://m.media-amazon.com/images/I/618WpY8A8vL.jpg"
+            Image = "/images/Funko-IronMan.jpg"
         });
         
         Funkos.Add(new Funko 
         { 
             Name = "Goku Ultra Instinct", 
-            Price = 22.00, 
+            Price = 41.99, 
             Stock = 3, 
             Category = anime,
-            Image = "https://m.media-amazon.com/images/I/51S6m6K-4EL.jpg"
+            Image = "/images/Funko GokuUltraInstinct.jpg"
         });
         
         Funkos.Add(new Funko
         {
-            Name = "Rock",
+            Name = "Desdentao",
             Price = 15.99,
             Stock = 10,
-            Category = anime,
-            Image = "https://m.media-amazon.com/images/I/51S6m6K-5EL.jpg"
+            Category = dreamwork,
+            Image = "/images/Funko-Desdentao.jpg"
         });
     }
 }

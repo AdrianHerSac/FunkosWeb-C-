@@ -18,11 +18,22 @@ body {
   color: #2d3748;
 }
 
+/* Dark theme background */
+html[data-bs-theme="dark"] body {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: #e2e8f0;
+}
+
 .navbar {
-  background: linear-gradient(135deg, #ff4d4d 0%, #58151c 100%) !important;
+  background: linear-gradient(135deg, #ff4d4d 0%, #a4d672 100%) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 1rem 0;
   backdrop-filter: blur(10px);
+}
+
+/* Dark theme navbar */
+html[data-bs-theme="dark"] .navbar {
+  background: linear-gradient(135deg, #6c0e0e 0%, #210f3f 100%) !important;
 }
 
 .navbar-brand {
@@ -74,6 +85,35 @@ main {
   }
 }
 
+/* Contenedor de imagen de fondo Funko */
+.funko-image-fondo {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.funko-image-fondo img {
+  width: 120%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.funko-image-fondo img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 780px) {
+  .funko-image-fondo {
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+}
+
 .display-4 {
   font-weight: 800;
   -webkit-background-clip: text;
@@ -91,6 +131,16 @@ h6 {
   font-weight: 700;
   color: #2d3748;
   margin-bottom: 1.5rem;
+}
+
+/* Dark theme headings */
+html[data-bs-theme="dark"] h1,
+html[data-bs-theme="dark"] h2,
+html[data-bs-theme="dark"] h3,
+html[data-bs-theme="dark"] h4,
+html[data-bs-theme="dark"] h5,
+html[data-bs-theme="dark"] h6 {
+  color: #e2e8f0;
 }
 
 .btn {
@@ -237,6 +287,14 @@ h6 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* Dark theme form controls */
+html[data-bs-theme="dark"] .form-control,
+html[data-bs-theme="dark"] .form-select {
+  border-color: #4a5568;
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
 .form-control:focus,
 .form-select:focus {
   border-color: #667eea;
@@ -249,6 +307,11 @@ h6 {
   color: #4a5568;
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
+}
+
+/* Dark theme form labels */
+html[data-bs-theme="dark"] .form-label {
+  color: #cbd5e0;
 }
 
 .form-text {
@@ -317,12 +380,22 @@ h6 {
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* Dark theme cards */
+html[data-bs-theme="dark"] .card {
+  background: rgba(45, 55, 72, 0.95);
+  color: #e2e8f0;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: #222;
+}
+
+html[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1a202c;
 }
 
 ::-webkit-scrollbar-thumb {

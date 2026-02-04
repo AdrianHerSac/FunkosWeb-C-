@@ -4,7 +4,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDistributedMemoryCache(); // Requisito técnico
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.Name = ".FunkoWorld.Session";
+});
+
 var app = builder.Build();
+app.UseSession();
 
 InMemoryData.Seed();
 
