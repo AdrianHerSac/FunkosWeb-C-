@@ -1,0 +1,71 @@
+@model FunkoWeb.DTOs.LoginDto
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+                <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h2 class="mb-0" style="font-weight: 700; letter-spacing: 1px;">
+                        <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                    </h2>
+                </div>
+                <div class="card-body p-5">
+                    <form asp-action="Login" asp-controller="Account" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Email" class="form-label">
+                                <i class="bi bi-envelope-fill"></i> Email
+                            </label>
+                            <input asp-for="Email" class="form-control" placeholder="admin@funko.com" autofocus />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Password" class="form-label">
+                                <i class="bi bi-lock-fill"></i> Contraseña
+                            </label>
+                            <input asp-for="Password" class="form-control" placeholder="••••••••" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="mb-4 form-check">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">
+                                Recordarme
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                            </button>
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Volver al inicio
+                            </a>
+                        </div>
+                    </form>
+
+                    <hr class="my-4">
+                    
+                    <div class="alert alert-info" role="alert">
+                        <strong>Usuarios de prueba:</strong><br>
+                        <small>
+                            👑 Admin: admin@funko.com / admin123<br>
+                            👤 Usuario: user@funko.com / user123
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

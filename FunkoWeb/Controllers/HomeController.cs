@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using FunkoWeb.Models;
 using FunkoWeb.DTOs;
 using FunkoWeb.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FunkoWeb.Controllers;
 
@@ -28,6 +29,7 @@ public class HomeController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public IActionResult Crear()
     {
         ViewBag.Categories = InMemoryData.Categories;
@@ -35,6 +37,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Crear(FunkoCreateDto nuevoFunkoDto, IFormFile? fichero)
     {
         if (!ModelState.IsValid)
@@ -84,6 +87,7 @@ public class HomeController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public IActionResult Modificar(Guid id)
     {
         var funko = InMemoryData.Funkos.FirstOrDefault(f => f.Id == id);
@@ -106,6 +110,7 @@ public class HomeController : Controller
     }
 
     [HttpPost] 
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Modificar(FunkoUpdateDto funkoEditadoDto, IFormFile? fichero)
     {
         if (!ModelState.IsValid)
@@ -160,6 +165,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete(Guid id)
     {
         var funko = InMemoryData.Funkos.FirstOrDefault(f => f.Id == id);

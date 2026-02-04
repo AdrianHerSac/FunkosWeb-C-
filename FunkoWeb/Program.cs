@@ -1,8 +1,26 @@
 using FunkoWeb.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+// Configurar autenticación por cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.ExpireTimeSpan = TimeSpan.FromHours(2);
+        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+        options.Cookie.Name = ".FunkoAuth";
+    });
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddDistributedMemoryCache(); // Requisito técnico
 builder.Services.AddSession(options => {
@@ -30,6 +48,9 @@ app.UseStatusCodePagesWithReExecute("/Home/PaginaNoEncontrada");
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+// ⚠️ EL ORDEN ES CRÍTICO: Authentication ANTES de Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
 
