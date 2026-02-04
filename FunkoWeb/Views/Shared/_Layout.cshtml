@@ -32,21 +32,45 @@
                     </li>
                 </ul>
 
-                <form asp-controller="Home" asp-action="CambiarTema" method="post" class="d-flex align-items-center">
-                    <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
-                    @if (temaActual == "light")
+                <div class="d-flex align-items-center gap-3">
+                    @if (User.Identity?.IsAuthenticated == true)
                     {
-                        <button name="tema" value="dark" class="btn btn-link text-light p-0 border-0">
-                            <i class="bi bi-moon-stars-fill fs-4"></i>
-                        </button>
+                        <span class="navbar-text me-2">
+                            <i class="bi bi-person-circle"></i> @User.Identity.Name
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <span class="badge bg-danger ms-1">Admin</span>
+                            }
+                        </span>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                            </button>
+                        </form>
                     }
                     else
                     {
-                        <button name="tema" value="light" class="btn btn-link text-warning p-0 border-0">
-                            <i class="bi bi-sun-fill fs-4"></i>
-                        </button>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                        </a>
                     }
-                </form>
+                    
+                    <form asp-controller="Home" asp-action="CambiarTema" method="post" class="d-flex align-items-center">
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        @if (temaActual == "light")
+                        {
+                            <button name="tema" value="dark" class="btn btn-link text-light p-0 border-0">
+                                <i class="bi bi-moon-stars-fill fs-4"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <button name="tema" value="light" class="btn btn-link text-warning p-0 border-0">
+                                <i class="bi bi-sun-fill fs-4"></i>
+                            </button>
+                        }
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
