@@ -21,12 +21,50 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    
+    [HttpGet("Buscar")]
+    public IActionResult Buscar(string? texto) 
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var funkos = InMemoryData.Funkos;
+        
+        // Si hay texto de búsqueda, filtrar por nombre exacto (case-insensitive)
+        if (!string.IsNullOrWhiteSpace(texto))
+        {
+            funkos = funkos.Where(f => f.Name.Equals(texto, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+        
+        return View("Index", funkos);
     }
+
+    // --- TEST ENDPOINTS (TEMPORARY - Remove after testing) ---
+    
+    [HttpGet("Test/NotFound")]
+    public IActionResult TestNotFound()
+    {
+        throw new FunkoWeb.Exceptions.NotFoundException("Funko", "test-123");
+    }
+    
+    [HttpGet("Test/BadRequest")]
+    public IActionResult TestBadRequest()
+    {
+        throw new FunkoWeb.Exceptions.BadRequestException("Los datos enviados no son válidos");
+    }
+    
+    [HttpGet("Test/ServerError")]
+    public IActionResult TestServerError()
+    {
+        throw new Exception("Este es un error de prueba del servidor");
+    }
+    
+    [HttpGet("Test/Forbidden")]
+    public IActionResult TestForbidden()
+    {
+        throw new FunkoWeb.Exceptions.ForbiddenException();
+    }
+    
+    // --- END TEST ENDPOINTS ---
+
+
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
@@ -179,16 +217,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Index));
     }
     
-    // 404 por si no lo veo
-    public IActionResult PaginaNoEncontrada()
-    {
-        return View("404"); 
-    }
-    
-    public IActionResult ErrorDelServidor()
-    {
-        return View("500"); 
-    }
+
     
     // Dark
     [HttpPost]

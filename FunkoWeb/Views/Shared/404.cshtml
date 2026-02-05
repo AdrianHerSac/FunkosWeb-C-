@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FunkoWeb.Models.ErrorResponse
+
+@{
     ViewData["Title"] = "Página No Encontrada";
 }
 
@@ -36,6 +38,14 @@
                         <li class="mb-2">✓ Vuelve al inicio para explorar los Funkos disponibles</li>
                     </ul>
                 </div>
+                
+                @if (Model.ShowRequestId)
+                {
+                    <div class="alert alert-secondary border shadow-sm mb-4" style="max-width: 500px; margin: 0 auto; border-radius: 15px; font-size: 0.85rem;">
+                        <p class="mb-1"><strong>ID de Solicitud:</strong> <code>@Model.RequestId</code></p>
+                        <p class="mb-0"><strong>Hora:</strong> @Model.Timestamp.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")</p>
+                    </div>
+                }
 
                 <div class="d-flex gap-3 justify-content-center mt-4">
                     <a asp-controller="Home" asp-action="Index" class="btn btn-primary px-5 py-3" style="

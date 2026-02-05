@@ -64,9 +64,7 @@ html[data-bs-theme="dark"] .navbar {
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  z-index: 1;
+  align-items: center;
 }
 
 main {
@@ -89,7 +87,6 @@ main {
 .funko-image-fondo {
   width: 100%;
   max-width: 800px;
-  margin: 2rem auto;
   text-align: center;
 }
 
@@ -115,6 +112,7 @@ main {
 }
 
 .display-4 {
+  align-items: center;
   font-weight: 800;
   -webkit-background-clip: text;
   background-clip: text;
@@ -211,11 +209,10 @@ html[data-bs-theme="dark"] h6 {
 /* ===== TABLA CON GRADIENTE ===== */
 .table {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin: 15px auto;
-  background: linear-gradient(135deg, #d4a5ff 0%, #7abafa 50%, #f88bd9 100%) !important;
 }
 
 @keyframes slideIn {
@@ -233,15 +230,9 @@ html[data-bs-theme="dark"] h6 {
 .table-dark th {
   border: none;
   padding: 1.2rem;
-  font-weight: 700;
+  font-weight: 1000;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.85rem;
-}
-
-.table-hover tbody tr {
-  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-  background: transparent;
 }
 
 .table-hover tbody tr:hover {
@@ -314,21 +305,12 @@ html[data-bs-theme="dark"] .form-label {
   color: #cbd5e0;
 }
 
-.form-text {
-  color: #718096;
-  font-size: 0.85rem;
-}
-
 .footer {
   background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  color: white;
-  padding: 2rem 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .footer a {
-  color: #a0aec0;
-  text-decoration: none;
+  color: #ffffff;
 }
 
 .footer a:hover {
@@ -360,7 +342,7 @@ html[data-bs-theme="dark"] .form-label {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.85rem;
@@ -371,7 +353,7 @@ html[data-bs-theme="dark"] .form-label {
   }
 
   .table img {
-    width: 65px !important;
+    width: 70px !important;
   }
 }
 
@@ -380,7 +362,6 @@ html[data-bs-theme="dark"] .form-label {
   background: rgba(255, 255, 255, 0.95);
 }
 
-/* Dark theme cards */
 html[data-bs-theme="dark"] .card {
   background: rgba(45, 55, 72, 0.95);
   color: #e2e8f0;

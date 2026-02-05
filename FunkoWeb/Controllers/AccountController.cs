@@ -13,7 +13,6 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login(string? returnUrl = null)
     {
-        // Si ya está autenticado, redirigir a home
         if (User.Identity?.IsAuthenticated == true)
         {
             return RedirectToAction("Index", "Home");
@@ -32,17 +31,14 @@ public class AccountController : Controller
             return View(model);
         }
 
-        // Buscar usuario por email
         var usuario = InMemoryData.Usuarios.FirstOrDefault(u => u.Email == model.Email);
 
-        // Verificar que existe y la contraseña es correcta
         if (usuario == null || !BCrypt.Net.BCrypt.Verify(model.Password, usuario.PasswordHash))
         {
             ModelState.AddModelError(string.Empty, "Email o contraseña incorrectos");
             return View(model);
         }
 
-        // Crear los claims (el pasaporte digital)
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
@@ -51,11 +47,9 @@ public class AccountController : Controller
             new Claim(ClaimTypes.Role, usuario.Rol.Nombre)
         };
 
-        // Crear la identidad
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-        // Propiedades de autenticación
         var authProperties = new AuthenticationProperties
         {
             IsPersistent = model.RememberMe,
@@ -64,7 +58,6 @@ public class AccountController : Controller
                 : DateTimeOffset.UtcNow.AddHours(2)
         };
 
-        // Iniciar sesión
         await HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             claimsPrincipal,
@@ -73,7 +66,6 @@ public class AccountController : Controller
         TempData["Mensaje"] = $"Bienvenido {usuario.Email}!";
         TempData["Tipo"] = "success";
 
-        // Redirigir a la URL de retorno o a Home
         if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
             return Redirect(model.ReturnUrl);
